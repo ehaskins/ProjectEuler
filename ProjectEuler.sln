@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.22823.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "ProjectEuler", "ProjectEuler\ProjectEuler.fsproj", "{D7ECB26C-68CA-41EF-809C-698CB99C6A8E}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Tutorial", "Tutorial\Tutorial.fsproj", "{18D059A4-43FF-4929-90FE-AF8778FEAF5D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D7ECB26C-68CA-41EF-809C-698CB99C6A8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7ECB26C-68CA-41EF-809C-698CB99C6A8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7ECB26C-68CA-41EF-809C-698CB99C6A8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7ECB26C-68CA-41EF-809C-698CB99C6A8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18D059A4-43FF-4929-90FE-AF8778FEAF5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18D059A4-43FF-4929-90FE-AF8778FEAF5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18D059A4-43FF-4929-90FE-AF8778FEAF5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18D059A4-43FF-4929-90FE-AF8778FEAF5D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
