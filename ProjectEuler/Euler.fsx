@@ -41,5 +41,9 @@ module Problem3 =
 
     let factorization = factorize 600851475143L |> Seq.toList
     
+module Problem4 = 
+    let twoDigitNums = [10..99]
+    let threeDigitNums = [100..999]
 
+    let isPalindromic x = 
         
