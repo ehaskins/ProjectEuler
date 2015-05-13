@@ -26,18 +26,23 @@ module Problem3 =
     let isPrime x =
         let rec check i = double i > sqrt (double x) || (x % i <> 0L && check (i + 1L))
 
-        check 2L
-            
+        if x > 1L then
+            check 2L
+        else
+            false            
 
-    let rec primes = infinite 2L |> Seq.filter (fun x -> isPrime x)
+    let rec primes = infinite 1L |> Seq.filter (fun x -> isPrime x)
 
     let rec factorize x =
         let prime = primes |> Seq.find (fun prime -> x % prime = 0L)
-
-        seq {
-            yield prime;
-            if x / prime <> 1L then yield! (factorize (x / prime))
-        }
+        
+        if x = 1L then
+            seq { yield 1L }
+        else
+            seq {
+                yield prime;
+                if x / prime <> 1L then yield! (factorize (x / prime))
+            }
 
     let factorization = factorize 600851475143L |> Seq.toList
     
@@ -71,4 +76,30 @@ module Problem4 =
 
     let twoDigitMax = palindromes twoDigitNumbers |> Seq.max
     let threeDigitMax = palindromes threeDigitNumbers |> Seq.max
-        
+
+module Problem5 =
+    let factorizations values = 
+        values
+        |> List.map (
+            fun i ->
+                (i, Problem3.factorize (int64 i)
+                    |> Seq.groupBy(fun f -> f)
+                    |> Seq.map (fun (factor, list) -> (factor, list |> Seq.length))
+                )
+            )
+
+    let lcm values =
+        seq {
+            for value in values do
+                yield! Problem3.factorize (int64 value) 
+                    |> Seq.groupBy(fun f -> f)
+                    |> Seq.map (fun (factor, list) -> (int factor, list |> Seq.length))
+        }
+            |> Seq.groupBy (fun (factor, count) -> factor)
+            |> Seq.map (fun (factor, list) -> list |> Seq.maxBy (fun (factor, count) -> count))
+
+    let test = 
+        lcm [2..10] 
+        |> Seq.fold (fun acc (factor, power) -> acc * (pown factor power)) 0
+        |> Seq.toList
+
