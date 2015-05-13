@@ -97,9 +97,8 @@ module Problem5 =
         }
             |> Seq.groupBy (fun (factor, count) -> factor)
             |> Seq.map (fun (factor, list) -> list |> Seq.maxBy (fun (factor, count) -> count))
+            |> Seq.fold (fun acc (factor, power) -> acc * (pown factor power)) 1
 
-    let test = 
-        lcm [2..10] 
-        |> Seq.fold (fun acc (factor, power) -> acc * (pown factor power)) 0
-        |> Seq.toList
+    let test = lcm [2..20] 
+        
 
