@@ -249,15 +249,16 @@ module Problem11 =
 
 module Problem12 =
     let triangleNumbers = 
-        Problem3.infinite 1L |> Seq.map (fun x -> [0L..x] |> Seq.sum)
+        Problem3.infinite 1L |> Seq.scan (fun acc x -> acc + x) 0L |> Seq.skip 1
 
     let factors n = seq {
             yield! [1L..n/2L] |> Seq.filter (fun x -> n % x = 0L)
             yield n
         }
 
-    let sampleTriangles = triangleNumbers |> Seq.take 100 |> Seq.map (fun x -> factors x |> Seq.toList) |> Seq.toList
+    let sampleTriangles = triangleNumbers |> Seq.takeWhile (fun x -> x <> 76576500L) |> Seq.length
     let sampleFactors = factors 76576500L |> Seq.toList
-    let test = 
+    let combinations s =
+        
 
     let result = triangleNumbers |> Seq.find (fun x -> Seq.length (factors x) > 500)
