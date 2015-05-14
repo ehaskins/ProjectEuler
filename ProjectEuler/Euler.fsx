@@ -258,7 +258,12 @@ module Problem12 =
 
     let sampleTriangles = triangleNumbers |> Seq.takeWhile (fun x -> x <> 76576500L) |> Seq.length
     let sampleFactors = factors 76576500L |> Seq.toList
-    let combinations s =
-        
+    let rec combinations values =
+        seq{
+            if (List.length values > 0) then 
+                yield []
+                for i in values do
+                    yield! values |> List.skipWhile(fun x -> x = i)
+        }
 
     let result = triangleNumbers |> Seq.find (fun x -> Seq.length (factors x) > 500)
