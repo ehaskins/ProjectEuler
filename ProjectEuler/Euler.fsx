@@ -246,3 +246,18 @@ module Problem11 =
         }
 
     let result = allProducts 4 grid |> Seq.max
+
+module Problem12 =
+    let triangleNumbers = 
+        Problem3.infinite 1L |> Seq.map (fun x -> [0L..x] |> Seq.sum)
+
+    let factors n = seq {
+            yield! [1L..n/2L] |> Seq.filter (fun x -> n % x = 0L)
+            yield n
+        }
+
+    let sampleTriangles = triangleNumbers |> Seq.take 100 |> Seq.map (fun x -> factors x |> Seq.toList) |> Seq.toList
+    let sampleFactors = factors 76576500L |> Seq.toList
+    let test = 
+
+    let result = triangleNumbers |> Seq.find (fun x -> Seq.length (factors x) > 500)
