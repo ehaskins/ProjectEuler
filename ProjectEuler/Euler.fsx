@@ -157,3 +157,11 @@ module Problem9 =
         |> Seq.find (fun (a, b, c) -> a + b + c = sum)
 
     let result = specialTriplets 1000.0 |> fun (a,b,c) -> a * b * c
+
+module Problem10 = 
+    let sumPrimes primeMax = 
+        Problem3.primes
+        |> Seq.takeWhile (fun x -> x < primeMax)
+        |> Seq.sum
+
+    let result = sumPrimes 2000000L
