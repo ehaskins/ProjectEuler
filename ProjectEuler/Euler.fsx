@@ -258,12 +258,29 @@ module Problem12 =
 
     let sampleTriangles = triangleNumbers |> Seq.takeWhile (fun x -> x <> 76576500L) |> Seq.length
     let sampleFactors = factors 76576500L |> Seq.toList
-    let rec combinations values =
-        seq{
-            if (List.length values > 0) then 
-                yield []
-                for i in values do
-                    yield! values |> List.skipWhile(fun x -> x = i)
+
+    let wrapInSeq i =
+        seq {
+            yield i;
+            yield i;
         }
 
-    let result = triangleNumbers |> Seq.find (fun x -> Seq.length (factors x) > 500)
+    let rec permute l = 
+        seq {
+            match l with
+            | [] ->
+                yield []
+            | values ->
+                let vals = values |> List.mapi (fun i x -> (i, x))
+                for (i, x) in vals do
+                    let remaining = vals |> List.filter (fun y -> y <> (i, x))
+
+                    yield! remaining |> List.map (fun (i, x) -> x) |> permute |> Seq.map (fun l -> x :: l)
+        }
+
+    let test = permute [1..3] |> Seq.toList
+
+    let primeFactors = Problem3.factorize 76576500L |> Seq.toList |> permute |> Seq.toList
+
+    
+    //let result = triangleNumbers |> Seq.find (fun x -> Seq.length (factors x) > 500)
