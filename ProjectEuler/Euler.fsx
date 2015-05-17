@@ -251,36 +251,23 @@ module Problem12 =
     let triangleNumbers = 
         Problem3.infinite 1L |> Seq.scan (fun acc x -> acc + x) 0L |> Seq.skip 1
 
-    let factors n = seq {
-            yield! [1L..n/2L] |> Seq.filter (fun x -> n % x = 0L)
-            yield n
-        }
-
-    let sampleTriangles = triangleNumbers |> Seq.takeWhile (fun x -> x <> 76576500L) |> Seq.length
-    let sampleFactors = factors 76576500L |> Seq.toList
-
-    let wrapInSeq i =
-        seq {
-            yield i;
-            yield i;
-        }
-
-    let rec permute l = 
+    let rec combinations l = 
         seq {
             match l with
             | [] ->
                 yield []
             | values ->
-                let vals = values |> List.mapi (fun i x -> (i, x))
-                for (i, x) in vals do
-                    let remaining = vals |> List.filter (fun y -> y <> (i, x))
+                let first = values |> List.find (fun x -> true)
+                let lc = values |> List.skip 1 |> combinations
 
-                    yield! remaining |> List.map (fun (i, x) -> x) |> permute |> Seq.map (fun l -> x :: l)
+                yield! lc |> Seq.map (fun c -> first :: c)
+                yield! lc
         }
+            
+    let product s =
+        s |> Seq.fold (fun a b -> a * b) 1L
 
-    let test = permute [1..3] |> Seq.toList
-
-    let primeFactors = Problem3.factorize 76576500L |> Seq.toList |> permute |> Seq.toList
-
+    let factors x = 
+        Problem3.factorize x |> Seq.toList |> combinations |> Seq.map (fun l -> l |> product) |> Seq.distinct
     
-    //let result = triangleNumbers |> Seq.find (fun x -> Seq.length (factors x) > 500)
+    let result = triangleNumbers |> Seq.skip 1 |> Seq.find (fun x -> factors x |> Seq.length > 500)
