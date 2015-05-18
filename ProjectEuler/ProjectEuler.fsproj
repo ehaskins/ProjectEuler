@@ -48,9 +48,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="Program.fs" />
     <None Include="App.config" />
-    <None Include="Euler.fsx" />
+    <Compile Include="Utils.fs" />
+    <Compile Include="Problem1.fs" />
+    <Compile Include="Problem2.fs" />
+    <Compile Include="Problem3.fs" />
+    <Compile Include="Problem4.fs" />
+    <Compile Include="Problem5.fs" />
+    <Compile Include="Problem6.fs" />
+    <Compile Include="Problem7.fs" />
+    <Compile Include="Problem8.fs" />
+    <Compile Include="Problem9.fs" />
+    <Compile Include="Problem10.fs" />
+    <Compile Include="Problem11.fs" />
+    <Compile Include="Problem12.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
