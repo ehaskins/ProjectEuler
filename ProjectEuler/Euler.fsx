@@ -1,12 +1,13 @@
 ﻿open System
 
 module Problem1 =
-    let problem1(max) =  
-        [1..max-1]
-        |> List.filter(fun x -> x % 3 = 0 || x % 5 = 0)
-        |> List.sum
+    let sumDivisibleBy max divisor =
+        let c = max / divisor
+        divisor * (c*(c+1)) / 2
 
-    let p1Solution = problem1 1000
+    let problem1(max) = sumDivisibleBy max 3 + sumDivisibleBy max 5 - sumDivisibleBy max 15
+
+    let p1Solution = problem1 (1000-1)
 
 module Problem2 =
     let rec fib = Seq.unfold (fun (a,b) -> Some(a+b, (b, a+b))) (0, 1)
