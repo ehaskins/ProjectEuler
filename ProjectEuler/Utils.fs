@@ -1,4 +1,4 @@
-﻿module Utils =
+﻿module Utils
     let infinite init = Seq.unfold (fun x -> Some(x, x+1L)) init
 
     let isPrime x =
