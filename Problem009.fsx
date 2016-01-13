@@ -1,4 +1,4 @@
-﻿module Problem9
+﻿module Problem9 =
     let triplets factorMax = 
         seq{
             for a in [1.0..factorMax] do

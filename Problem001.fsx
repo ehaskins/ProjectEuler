@@ -1,4 +1,4 @@
-﻿module Problem1
+﻿module Problem1 =
     let sumDivisibleBy max divisor =
         let c = max / divisor
         divisor * (c*(c+1)) / 2

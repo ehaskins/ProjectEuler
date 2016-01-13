@@ -1,4 +1,4 @@
-﻿module Problem8
+﻿module Problem8 =
     open System
 
     let number = 

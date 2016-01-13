@@ -1,4 +1,4 @@
-﻿module Problem6
+﻿module Problem6 =
     let sumSquareDiff values = 
         pown (values |> Seq.sum) 2 - (values |> Seq.sumBy (fun x -> pown x 2))
 

@@ -1,6 +1,6 @@
-﻿module Problem12
-    open Utils
+﻿#load "Utils.fs"
 
+module Problem12 =
     let triangleNumbers = 
         Utils.infinite 1L |> Seq.scan (fun acc x -> acc + x) 0L |> Seq.skip 1
 
@@ -21,6 +21,6 @@
         s |> Seq.fold (fun a b -> a * b) 1L
 
     let factors x = 
-        Problem3.factorize x |> Seq.toList |> combinations |> Seq.map (fun l -> l |> product) |> Seq.distinct
+        Utils.factorize x |> Seq.toList |> combinations |> Seq.map (fun l -> l |> product) |> Seq.distinct
     
     let result = triangleNumbers |> Seq.skip 1 |> Seq.find (fun x -> factors x |> Seq.length > 500)
