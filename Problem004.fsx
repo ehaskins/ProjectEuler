@@ -1,4 +1,4 @@
-﻿module Problem4
+﻿module Problem4 =
     let twoDigitNumbers = [10..99]
     let threeDigitNumbers = [100..999]
 

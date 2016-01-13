@@ -1,4 +1,4 @@
-﻿module Problem2
+﻿module Problem2 =
     let rec fib = Seq.unfold (fun (a,b) -> Some(a+b, (b, a+b))) (0, 1)
     
     let fibList = fib |> Seq.takeWhile (fun x -> x < 100) |> Seq.toList
