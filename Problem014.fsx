@@ -1,15 +1,20 @@
+#load "Utils.fs"
+open Operators.Checked
+
 module Problem14 = 
-    let (|Even|Odd|) input = if input % 2 = 0 then Even else Odd
-    
-    let rec collatzLength x n = 
-        match n with
-        | 1 -> 1
-        | _ ->
-            collatzLength (x + 1) (
-                match n with
-                | Even ->  n / 2
-                | Odd -> n * 3 + 1)
+    let (|Even|Odd|) input = if input % 2L = 0L then Even else Odd
+
+    let rec collatzLength = 
+        let rec core = (fun pos n ->
+                                match n with
+                                | 1L -> pos + 1L
+                                | _ ->
+                                    core (pos + 1L) (
+                                        match n with
+                                        | Even ->  n / 2L
+                                        | Odd -> n * 3L + 1L))
+        fun n -> core 0L n
         
-    let test = collatzLength 0 1000000
+    let test = collatzLength 13L
     
-    let answer = [1 .. 1000000] |> Seq.maxBy (collatzLength 0)
+    let answer = [1L..1000000L] |> List.maxBy collatzLength
